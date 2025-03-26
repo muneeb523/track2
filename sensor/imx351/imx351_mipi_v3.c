@@ -352,7 +352,8 @@ static struct vvcam_sccb_data_s imx351_init_setting[]  = {
 
 
 
-};static struct vvcam_mode_info_s pimx351_mode_info[] = {
+};
+static struct vvcam_mode_info_s pimx351_mode_info[] = {
     {
         .index          = 0,
         .size.width     = 2020,  // Keeping resolution same
@@ -385,7 +386,7 @@ static struct vvcam_sccb_data_s imx351_init_setting[]  = {
             .gain_update_delay_frm = 1,
         },
         .mipi_info = {
-            .mipi_lane = 2,  // Keeping it at 2 lanes
+            .mipi_lane = 4,  // Keeping it at 2 lanes
         },
         .preg_data      = imx351_2020x1136_setting,
         .reg_data_count = ARRAY_SIZE(imx351_2020x1136_setting),
