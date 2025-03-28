@@ -1750,25 +1750,25 @@ static struct vvcam_mode_info_s pimx351_mode_info[] = {
          }
      }
 
-     sensor->sensor_clk = devm_clk_get(dev, "csi_mclk");
-     if (IS_ERR(sensor->sensor_clk)) {
-         sensor->sensor_clk = NULL;
-         dev_err(dev, "clock-frequency missing or invalid\n");
-         return PTR_ERR(sensor->sensor_clk);
-     }
+    //  sensor->sensor_clk = devm_clk_get(dev, "csi_mclk");
+    //  if (IS_ERR(sensor->sensor_clk)) {
+    //      sensor->sensor_clk = NULL;
+    //      dev_err(dev, "clock-frequency missing or invalid\n");
+    //      return PTR_ERR(sensor->sensor_clk);
+    //  }
 
-     retval = of_property_read_u32(dev->of_node, "mclk", &(sensor->mclk));
-     if (retval) {
-         dev_err(dev, "mclk missing or invalid\n");
-         return retval;
-     }
+    //  retval = of_property_read_u32(dev->of_node, "mclk", &(sensor->mclk));
+    //  if (retval) {
+    //      dev_err(dev, "mclk missing or invalid\n");
+    //      return retval;
+    //  }
 
-     retval = of_property_read_u32(dev->of_node, "mclk_source",
-                 (u32 *)&(sensor->mclk_source));
-     if (retval) {
-         dev_err(dev, "mclk_source missing or invalid\n");
-         return retval;
-     }
+    //  retval = of_property_read_u32(dev->of_node, "mclk_source",
+    //              (u32 *)&(sensor->mclk_source));
+    //  if (retval) {
+    //      dev_err(dev, "mclk_source missing or invalid\n");
+    //      return retval;
+    //  }
 
      retval = of_property_read_u32(dev->of_node, "csi_id", &(sensor->csi_id));
      if (retval) {
@@ -1803,15 +1803,15 @@ static struct vvcam_mode_info_s pimx351_mode_info[] = {
      if (retval) {
          dev_err(dev, "regulator enable failed\n");
          dev_err(dev, "regulator enable failed however for custom not an issue\n");
-         return retval;
+        //  return retval;
      }
 
-    imx351_set_clk_rate(sensor);
-     retval = clk_prepare_enable(sensor->sensor_clk);
-     if (retval < 0) {
-         dev_err(dev, "%s: enable sensor clk fail\n", __func__);
-         goto probe_err_regulator_disable;
-     }
+    // imx351_set_clk_rate(sensor);
+    //  retval = clk_prepare_enable(sensor->sensor_clk);
+    //  if (retval < 0) {
+    //      dev_err(dev, "%s: enable sensor clk fail\n", __func__);
+    //      goto probe_err_regulator_disable;
+    //  }
 
      retval = imx351_power_on(sensor);
      if (retval < 0) {
