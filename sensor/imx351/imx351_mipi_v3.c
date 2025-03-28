@@ -93,6 +93,217 @@
      u32 stream_status;
      u32 resume_status;
  };
+ static struct vvcam_sccb_data_s imx351_2328x1744_setting[] = {
+    /*       4Lane
+       reg_2
+       1/2Binning
+       H: 2328
+       V: 1744
+       MIPI output setting
+           Address value*/
+    {0x0112, 0x0A}, //
+    {0x0113, 0x0A}, //
+    {0x0114, 0x01}, // Line Length PCK Setting
+    {0x0342, 0x2F}, //
+    {0x0343, 0x20}, // Frame Length Lines Setting
+    {0x0340, 0x07}, //
+    {0x0341, 0x14}, // ROI Setting
+    {0x0344, 0x00}, //
+    {0x0345, 0x00}, //
+    {0x0346, 0x00}, //
+    {0x0347, 0x04}, //
+    {0x0348, 0x12}, //
+    {0x0349, 0x2F}, //
+    {0x034A, 0x0D}, //
+    {0x034B, 0xA3}, // Mode Setting
+    {0x0220, 0x00}, //
+    {0x0221, 0x11}, //
+    {0x0222, 0x01}, //
+    {0x0381, 0x01}, //
+    {0x0383, 0x01}, //
+    {0x0385, 0x01}, //
+    {0x0387, 0x01}, //
+    {0x0900, 0x01}, //
+    {0x0901, 0x22}, //
+    {0x0902, 0x08},//0A}, //
+    {0x3243, 0x00}, //
+    {0x3F4C, 0x01}, //
+    {0x3F4D, 0x03}, //
+    {0x4254, 0x7F}, // Digital Crop & Scaling
+    {0x0401, 0x00}, //
+    {0x0404, 0x00}, //
+    {0x0405, 0x10}, //
+    {0x0408, 0x00}, //
+    {0x0409, 0x00}, //
+    {0x040A, 0x00}, //
+    {0x040B, 0x00}, //
+    {0x040C, 0x09}, //
+    {0x040D, 0x18}, //
+    {0x040E, 0x06}, //
+    {0x040F, 0xD0}, // Output Size Setting
+    {0x034C, 0x09}, //
+    {0x034D, 0x18}, //
+    {0x034E, 0x06}, //
+    {0x034F, 0xD0}, // Clock Setting
+    {0x0301, 0x05}, //
+    {0x0303, 0x02}, //
+    {0x0305, 0x04}, //
+    {0x0306, 0x01}, //
+    {0x0307, 0x12}, //
+    {0x030B, 0x04}, //
+    {0x030D, 0x06}, //
+    {0x030E, 0x01}, //
+    {0x030F, 0x76}, //
+    {0x0310, 0x01}, //
+    {0x0820, 0x05}, //
+    {0x0821, 0xD8}, //
+    {0x0822, 0x00}, //
+    {0x0823, 0x00}, //
+    {0xBC41, 0x01}, // PDAF Setting
+    {0x3E20, 0x01}, //
+    {0x3E37, 0x01}, // 0x01},// enable
+    {0x3E3B, 0x00}, // Other Setting
+    {0x0106, 0x00}, //
+    {0x0B00, 0x00}, //
+    {0x3230, 0x00}, //
+    {0x3C00, 0x6D}, //
+    {0x3C01, 0x5B}, //
+    {0x3C02, 0x77}, //
+    {0x3C03, 0x66}, //
+    {0x3C04, 0x00}, //
+    {0x3C05, 0x84}, //
+    {0x3C06, 0x14}, //
+    {0x3C07, 0x00}, //
+    {0x3C08, 0x01}, //
+    {0x3F14, 0x01}, //
+    {0x3F17, 0x00}, //
+    {0x3F3C, 0x01}, //
+    {0x3F78, 0x03}, //
+    {0x3F79, 0xA4}, //
+    {0x3F7C, 0x00}, //
+    {0x3F7D, 0x00}, //
+    {0x97C1, 0x04}, //
+    {0x97C5, 0x0C}, // Integration Setting
+    {0x0202, 0x07}, //
+    {0x0203, 0x00}, //
+    {0x0224, 0x01}, //
+    {0x0225, 0xF4}, // Gain Setting
+    {0x0204, 0x00}, //
+    {0x0205, 0x00}, //
+    {0x0216, 0x00}, //
+    {0x0217, 0x00}, //
+    {0x020E, 0x01}, //
+    {0x020F, 0x00}, //
+    {0x0218, 0x01}, //
+    {0x0219, 0x00}, //
+
+};
+
+ static struct vvcam_sccb_data_s imx351_1280x720_setting[] = {
+    /*    4Lane
+        reg_3
+        720p@90fps
+        H: 1280
+        V: 720
+        MIPI output setting
+            Address value*/
+    {0x0112, 0x0A}, //
+    {0x0113, 0x0A}, //
+    {0x0114, 0x01}, // Line Length PCK Setting
+    {0x0342, 0x11}, //
+    {0x0343, 0x9C}, // Frame Length Lines Setting
+    {0x0340, 0x07}, //
+    {0x0341, 0x18}, // ROI Setting
+    {0x0344, 0x00}, //
+    {0x0345, 0x00}, //
+    {0x0346, 0x00}, //
+    {0x0347, 0x00}, //
+    {0x0348, 0x12}, //
+    {0x0349, 0x2F}, //
+    {0x034A, 0x0D}, //
+    {0x034B, 0x9F}, // Mode Setting
+    {0x0220, 0x00}, //
+    {0x0221, 0x11}, //
+    {0x0222, 0x01}, //
+    {0x0381, 0x01}, //
+    {0x0383, 0x01}, //
+    {0x0385, 0x01}, //
+    {0x0387, 0x01}, //
+    {0x0900, 0x01}, //
+    {0x0901, 0x22}, //
+    {0x0902, 0x08},//A}, //
+    {0x3243, 0x00}, //
+    {0x3F4C, 0x01}, //
+    {0x3F4D, 0x01}, //
+    {0x4254, 0x7F}, // Digital Crop & Scaling
+    {0x0401, 0x02}, //
+    {0x0404, 0x00}, //
+    {0x0405, 0x1D}, //
+    {0x0408, 0x00}, //
+    {0x0409, 0x04}, //
+    {0x040A, 0x00}, //
+    {0x040B, 0xDA}, //
+    {0x040C, 0x09}, //
+    {0x040D, 0x10}, //
+    {0x040E, 0x05}, //
+    {0x040F, 0x1A}, // Output Size Setting
+    {0x034C, 0x05}, //
+    {0x034D, 0x00}, //
+    {0x034E, 0x02}, //
+    {0x034F, 0xD0}, // Clock Setting
+    {0x0301, 0x05}, //
+    {0x0303, 0x02}, //
+    {0x0305, 0x04}, //
+    {0x0306, 0x01}, //
+    {0x0307, 0x34}, //
+    {0x030B, 0x02}, //
+    {0x030D, 0x06}, //
+    {0x030E, 0x01}, //
+    {0x030F, 0x7B}, //
+    {0x0310, 0x01}, //
+    {0x0820, 0x0B}, //
+    {0x0821, 0xD8}, //
+    {0x0822, 0x00}, //
+    {0x0823, 0x00}, //
+    {0xBC41, 0x01}, // PDAF Setting
+    {0x3E20, 0x01}, //
+    {0x3E37, 0x00}, //
+    {0x3E3B, 0x00}, // Other Setting
+    {0x0106, 0x00}, //
+    {0x0B00, 0x00}, //
+    {0x3230, 0x00}, //
+    {0x3C00, 0x5B}, //
+    {0x3C01, 0x54}, //
+    {0x3C02, 0x77}, //
+    {0x3C03, 0x66}, //
+    {0x3C04, 0x00}, //
+    {0x3C05, 0x9A}, //
+    {0x3C06, 0x14}, //
+    {0x3C07, 0x00}, //
+    {0x3C08, 0x01}, //
+    {0x3F14, 0x01}, //
+    {0x3F17, 0x00}, //
+    {0x3F3C, 0x01}, //
+    {0x3F78, 0x02}, //
+    {0x3F79, 0xAC}, //
+    {0x3F7C, 0x00}, //
+    {0x3F7D, 0x00}, //
+    {0x97C1, 0x04}, //
+    {0x97C5, 0x0C}, // Integration Setting
+    {0x0202, 0x07}, //
+    {0x0203, 0x04}, //
+    {0x0224, 0x01}, //
+    {0x0225, 0xF4}, // Gain Setting
+    {0x0204, 0x00}, //
+    {0x0205, 0x00}, //
+    {0x0216, 0x00}, //
+    {0x0217, 0x00}, //
+    {0x020E, 0x01}, //
+    {0x020F, 0x00}, //
+    {0x0218, 0x01}, //
+    {0x0219, 0x00}, //
+
+};
 
  static struct vvcam_sccb_data_s  imx351_2020x1136_setting[] = {
     /*    4Lane
@@ -353,11 +564,63 @@ static struct vvcam_sccb_data_s imx351_init_setting[]  = {
 
 
 };
+
 static struct vvcam_mode_info_s pimx351_mode_info[] = {
     {
         .index          = 0,
-        .size.width     = 2020,  // Keeping resolution same
-        .size.height    = 1136,  
+        .size           = {
+			.bounds_width  = 1920,
+			.bounds_height = 1080,
+			.top           = 0,
+			.left          = 0,
+			.width         = 1920,
+			.height        = 1080,
+		},
+        .hdr_mode       = SENSOR_MODE_LINEAR,
+        .bit_width      = 10,
+        .data_compress  = {
+            .enable = 0,
+        },
+        .bayer_pattern  = BAYER_GBRG,
+        .ae_info = {
+            .def_frm_len_lines     = 0x466,
+			.curr_frm_len_lines    = 0x466,
+			.one_line_exp_time_ns  = 29625,
+
+			.max_integration_line  = 0x466 - 4,
+			.min_integration_line  = 1,
+
+			.max_again             = 8 * 1024,
+			.min_again             = 2 * 1024,
+			.max_dgain             = 4 * 1024,
+			.min_dgain             = 1.5 * 1024,
+			.gain_step             = 4,
+			.start_exposure        = 3 * 400 * 1024,
+			.cur_fps               = 30 * 1024,
+			.max_fps               = 30 * 1024,
+			.min_fps               = 5 * 1024,
+			.min_afps              = 5 * 1024,
+			.int_update_delay_frm  = 1,
+			.gain_update_delay_frm = 1,
+        },
+
+        .mipi_info = {
+            .mipi_lane = 2,  // Keeping it at 2 lanes
+        },
+        .preg_data      = imx351_2020x1136_setting,
+        .reg_data_count = ARRAY_SIZE(imx351_2020x1136_setting),
+    },
+
+    {
+        .index          = 1,
+        .size           = {
+			.bounds_width  = 1280,
+			.bounds_height = 720,
+			.top           = 0,
+			.left          = 0,
+			.width         = 1280,
+			.height        = 720,
+		},
         .hdr_mode       = SENSOR_MODE_LINEAR,
         .bit_width      = 10,
         .data_compress  = {
@@ -385,12 +648,58 @@ static struct vvcam_mode_info_s pimx351_mode_info[] = {
             .int_update_delay_frm  = 1,
             .gain_update_delay_frm = 1,
         },
+
+        .mipi_info = {
+            .mipi_lane = 2,  // Keeping it at 2 lanes
+        },
+        .preg_data      = imx351_1280x720_setting,
+        .reg_data_count = ARRAY_SIZE(imx351_1280x720_setting),
+    },
+    {
+        .index          = 0,
+        .size           = {
+			.bounds_width  = 2328,
+			.bounds_height = 1744,
+			.top           = 0,
+			.left          = 0,
+			.width         = 2328,
+			.height        = 1744,
+		},
+        .hdr_mode       = SENSOR_MODE_LINEAR,
+        .bit_width      = 10,
+        .data_compress  = {
+            .enable = 0,
+        },
+        .bayer_pattern  = BAYER_GBRG,
+        .ae_info = {
+            .def_frm_len_lines     = 0x35E0,  // Increased for 30 FPS
+            .curr_frm_len_lines    = 0x35E0,
+            .one_line_exp_time_ns  = 0x1790,  // Keeping same line time
+
+            .max_integration_line  = 0x35DC,  // Frame length - 4
+            .min_integration_line  = 1,
+
+            .max_again             = 0x03D2,  
+            .min_again             = 0,
+            .max_dgain             = 0x0FFF,
+            .min_dgain             = 0x0100,
+            .gain_step             = 1,
+            .start_exposure        = 3 * 400 * 1024,
+            .cur_fps               = 30 * 1024,  // Now at 30 FPS
+            .max_fps               = 30 * 1024,
+            .min_fps               = 5 * 1024,   // Allow flexibility
+            .min_afps              = 5 * 1024,
+            .int_update_delay_frm  = 1,
+            .gain_update_delay_frm = 1,
+        },
+
         .mipi_info = {
             .mipi_lane = 4,  // Keeping it at 2 lanes
         },
-        .preg_data      = imx351_2020x1136_setting,
-        .reg_data_count = ARRAY_SIZE(imx351_2020x1136_setting),
+        .preg_data      = imx351_2328x1744_setting,
+        .reg_data_count = ARRAY_SIZE(imx351_2328x1744_setting),
     },
+
 };
 
 
@@ -1441,25 +1750,25 @@ static struct vvcam_mode_info_s pimx351_mode_info[] = {
          }
      }
 
-    //  sensor->sensor_clk = devm_clk_get(dev, "csi_mclk");
-    //  if (IS_ERR(sensor->sensor_clk)) {
-    //      sensor->sensor_clk = NULL;
-    //      dev_err(dev, "clock-frequency missing or invalid\n");
-    //      return PTR_ERR(sensor->sensor_clk);
-    //  }
+     sensor->sensor_clk = devm_clk_get(dev, "csi_mclk");
+     if (IS_ERR(sensor->sensor_clk)) {
+         sensor->sensor_clk = NULL;
+         dev_err(dev, "clock-frequency missing or invalid\n");
+         return PTR_ERR(sensor->sensor_clk);
+     }
 
-    //  retval = of_property_read_u32(dev->of_node, "mclk", &(sensor->mclk));
-    //  if (retval) {
-    //      dev_err(dev, "mclk missing or invalid\n");
-    //      return retval;
-    //  }
+     retval = of_property_read_u32(dev->of_node, "mclk", &(sensor->mclk));
+     if (retval) {
+         dev_err(dev, "mclk missing or invalid\n");
+         return retval;
+     }
 
-    //  retval = of_property_read_u32(dev->of_node, "mclk_source",
-    //              (u32 *)&(sensor->mclk_source));
-    //  if (retval) {
-    //      dev_err(dev, "mclk_source missing or invalid\n");
-    //      return retval;
-    //  }
+     retval = of_property_read_u32(dev->of_node, "mclk_source",
+                 (u32 *)&(sensor->mclk_source));
+     if (retval) {
+         dev_err(dev, "mclk_source missing or invalid\n");
+         return retval;
+     }
 
      retval = of_property_read_u32(dev->of_node, "csi_id", &(sensor->csi_id));
      if (retval) {
@@ -1475,34 +1784,34 @@ static struct vvcam_mode_info_s pimx351_mode_info[] = {
      sensor->io_regulator = devm_regulator_get(dev, "DOVDD");
      if (IS_ERR(sensor->io_regulator)) {
          dev_err(dev, "cannot get io regulator\n");
-       //  return PTR_ERR(sensor->io_regulator);
+        return PTR_ERR(sensor->io_regulator);
      }
 
      sensor->core_regulator = devm_regulator_get(dev, "DVDD");
      if (IS_ERR(sensor->core_regulator)) {
          dev_err(dev, "cannot get core regulator\n");
-        // return PTR_ERR(sensor->core_regulator);
+        return PTR_ERR(sensor->core_regulator);
      }
 
      sensor->analog_regulator = devm_regulator_get(dev, "AVDD");
      if (IS_ERR(sensor->analog_regulator)) {
          dev_err(dev, "cannot get analog  regulator\n");
-       //  return PTR_ERR(sensor->analog_regulator);
+        return PTR_ERR(sensor->analog_regulator);
      }
 
      retval = imx351_regulator_enable(sensor);
      if (retval) {
          dev_err(dev, "regulator enable failed\n");
          dev_err(dev, "regulator enable failed however for custom not an issue\n");
-        //  return retval;
+         return retval;
      }
 
-   //  imx351_set_clk_rate(sensor);
-    //  retval = clk_prepare_enable(sensor->sensor_clk);
-    //  if (retval < 0) {
-    //      dev_err(dev, "%s: enable sensor clk fail\n", __func__);
-    //      goto probe_err_regulator_disable;
-    //  }
+    imx351_set_clk_rate(sensor);
+     retval = clk_prepare_enable(sensor->sensor_clk);
+     if (retval < 0) {
+         dev_err(dev, "%s: enable sensor clk fail\n", __func__);
+         goto probe_err_regulator_disable;
+     }
 
      retval = imx351_power_on(sensor);
      if (retval < 0) {
