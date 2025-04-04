@@ -605,7 +605,7 @@ static struct vvcam_mode_info_s pimx351_mode_info[] = {
         },
 
         .mipi_info = {
-            .mipi_lane = 2,  // Keeping it at 2 lanes
+            .mipi_lane = 4,  // Keeping it at 4 lane
         },
         .preg_data      = imx351_2020x1136_setting,
         .reg_data_count = ARRAY_SIZE(imx351_2020x1136_setting),
@@ -650,7 +650,7 @@ static struct vvcam_mode_info_s pimx351_mode_info[] = {
         },
 
         .mipi_info = {
-            .mipi_lane = 2,  // Keeping it at 2 lanes
+            .mipi_lane = 4,  // Keeping it at 2 lanes
         },
         .preg_data      = imx351_1280x720_setting,
         .reg_data_count = ARRAY_SIZE(imx351_1280x720_setting),
