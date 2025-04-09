@@ -378,7 +378,7 @@ static struct vvcam_sccb_data_s imx351_3840x2160_setting[] = {
     {0x0219, 0x00}, //
     {0x0100, 0x01}, // Start streaming
 
-}
+};
 
 static struct vvcam_sccb_data_s imx351_1280x720_setting[] = {
     /*    4Lane
