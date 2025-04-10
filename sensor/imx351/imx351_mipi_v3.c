@@ -986,7 +986,7 @@ static int imx351_write_reg(struct imx351 *sensor, u16 reg, u8 val)
         dev_err(dev, "Write reg error: reg=%x, val=%x\n", reg, val);
         return -1;
     }
-    pr_info("No error Success here \n");
+    
 
     return 0;
 }
@@ -1242,6 +1242,7 @@ static int imx351_set_vsgain(struct imx351 *sensor, u32 gain)
     return 0;
 }
 
+
 static int imx351_set_fps(struct imx351 *sensor, u32 fps)
 {
     u32 vts;
@@ -1249,44 +1250,37 @@ static int imx351_set_fps(struct imx351 *sensor, u32 fps)
     pr_info("enter %s\n", __func__);
 
     if (fps > sensor->cur_mode.ae_info.max_fps)
-    {
         fps = sensor->cur_mode.ae_info.max_fps;
-    }
     else if (fps < sensor->cur_mode.ae_info.min_fps)
-    {
         fps = sensor->cur_mode.ae_info.min_fps;
-    }
+
     vts = sensor->cur_mode.ae_info.max_fps *
           sensor->cur_mode.ae_info.def_frm_len_lines / fps;
 
     ret |= imx351_write_reg(sensor, 0x0104, 0x01);
-    ret = imx351_write_reg(sensor, 0x0202, (u8)(vts >> 8) & 0xff);
-    ret |= imx351_write_reg(sensor, 0x0203, (u8)(vts & 0xff));
-    ret |= imx351_write_reg(sensor, 0x104, 0x0);
+
+    ret |= imx351_write_reg(sensor, 0x0340, (u8)(vts >> 8));
+
+    ret |= imx351_write_reg(sensor, 0x0341, (u8)(vts & 0xff));
+
+    ret |= imx351_write_reg(sensor, 0x0104, 0x00);
 
     sensor->cur_mode.ae_info.cur_fps = fps;
 
-    if (sensor->cur_mode.hdr_mode == SENSOR_MODE_LINEAR)
-    {
+    if (sensor->cur_mode.hdr_mode == SENSOR_MODE_LINEAR) {
         sensor->cur_mode.ae_info.max_integration_line = vts - 4;
-    }
-    else
-    {
-        if (sensor->cur_mode.stitching_mode ==
-            SENSOR_STITCHING_DUAL_DCG)
-        {
+    } else {
+        if (sensor->cur_mode.stitching_mode == SENSOR_STITCHING_DUAL_DCG) {
             sensor->cur_mode.ae_info.max_vsintegration_line = 44;
-            sensor->cur_mode.ae_info.max_integration_line = vts -
-                                                            4 - sensor->cur_mode.ae_info.max_vsintegration_line;
-        }
-        else
-        {
+            sensor->cur_mode.ae_info.max_integration_line = vts - 4 - 44;
+        } else {
             sensor->cur_mode.ae_info.max_integration_line = vts - 4;
         }
     }
     sensor->cur_mode.ae_info.curr_frm_len_lines = vts;
     return ret;
 }
+
 
 static int imx351_get_fps(struct imx351 *sensor, u32 *pfps)
 {
@@ -1310,27 +1304,65 @@ static int imx351_set_test_pattern(struct imx351 *sensor, void *arg)
         switch (test_pattern.pattern)
         {
         case 0:
+            pr_info("Test Set Pattern Mode Case 1 used \n");
             ret |= imx351_write_reg(sensor, 0x104, 0x01);
             ret = imx351_write_reg(sensor, 0x0600, 0x0);
             ret |= imx351_write_reg(sensor, 0x0601, 0x1);
+            ret |= imx351_write_reg(sensor, 0x0624, 0x06);
+            ret |= imx351_write_reg(sensor, 0x0625, 0x68);
+            ret |= imx351_write_reg(sensor, 0x0626, 0x04);
+            ret |= imx351_write_reg(sensor, 0x0627, 0xD0);
+
+            ret |= imx351_write_reg(sensor, 0x613C, 0x06);
+            ret |= imx351_write_reg(sensor, 0x613D, 0x68);
+            ret |= imx351_write_reg(sensor, 0x613E, 0x04);
+            ret |= imx351_write_reg(sensor, 0x613F, 0xD0);
+
             ret |= imx351_write_reg(sensor, 0x104, 0x00);
             break;
         case 1:
             ret |= imx351_write_reg(sensor, 0x104, 0x01);
             ret = imx351_write_reg(sensor, 0x0600, 0x0);
             ret |= imx351_write_reg(sensor, 0x0601, 0x2);
+            ret |= imx351_write_reg(sensor, 0x0624, 0x0C);
+            ret |= imx351_write_reg(sensor, 0x0625, 0xD0);
+            ret |= imx351_write_reg(sensor, 0x0626, 0x09);
+            ret |= imx351_write_reg(sensor, 0x0627, 0xA0);
+
+            ret |= imx351_write_reg(sensor, 0x613C, 0x0C);
+            ret |= imx351_write_reg(sensor, 0x613D, 0xD0);
+            ret |= imx351_write_reg(sensor, 0x613E, 0x09);
+            ret |= imx351_write_reg(sensor, 0x613F, 0xA0);
             ret |= imx351_write_reg(sensor, 0x104, 0x00);
             break;
         case 2:
             ret |= imx351_write_reg(sensor, 0x104, 0x01);
             ret = imx351_write_reg(sensor, 0x0600, 0x0);
             ret |= imx351_write_reg(sensor, 0x0601, 0x3);
+            ret |= imx351_write_reg(sensor, 0x0624, 0x06);
+            ret |= imx351_write_reg(sensor, 0x0625, 0x68);
+            ret |= imx351_write_reg(sensor, 0x0626, 0x04);
+            ret |= imx351_write_reg(sensor, 0x0627, 0xD0);
+
+            ret |= imx351_write_reg(sensor, 0x613C, 0x06);
+            ret |= imx351_write_reg(sensor, 0x613D, 0x68);
+            ret |= imx351_write_reg(sensor, 0x613E, 0x04);
+            ret |= imx351_write_reg(sensor, 0x613F, 0xD0);
             ret |= imx351_write_reg(sensor, 0x104, 0x00);
             break;
         case 3:
             ret |= imx351_write_reg(sensor, 0x104, 0x01);
             ret = imx351_write_reg(sensor, 0x0600, 0x0);
             ret |= imx351_write_reg(sensor, 0x0601, 0x4);
+            ret |= imx351_write_reg(sensor, 0x0624, 0x0C);
+            ret |= imx351_write_reg(sensor, 0x0625, 0xD0);
+            ret |= imx351_write_reg(sensor, 0x0626, 0x09);
+            ret |= imx351_write_reg(sensor, 0x0627, 0xA0);
+
+            ret |= imx351_write_reg(sensor, 0x613C, 0x0C);
+            ret |= imx351_write_reg(sensor, 0x613D, 0xD0);
+            ret |= imx351_write_reg(sensor, 0x613E, 0x09);
+            ret |= imx351_write_reg(sensor, 0x613F, 0xA0);
             ret |= imx351_write_reg(sensor, 0x104, 0x00);
             break;
         default:
@@ -1343,6 +1375,15 @@ static int imx351_set_test_pattern(struct imx351 *sensor, void *arg)
         ret |= imx351_write_reg(sensor, 0x104, 0x01);
         ret = imx351_write_reg(sensor, 0x0600, 0x0);
         ret |= imx351_write_reg(sensor, 0x0601, 0x0);
+        ret |= imx351_write_reg(sensor, 0x0624, 0x06);
+        ret |= imx351_write_reg(sensor, 0x0625, 0x68);
+        ret |= imx351_write_reg(sensor, 0x0626, 0x04);
+        ret |= imx351_write_reg(sensor, 0x0627, 0xD0);
+
+        ret |= imx351_write_reg(sensor, 0x613C, 0x06);
+        ret |= imx351_write_reg(sensor, 0x613D, 0x68);
+        ret |= imx351_write_reg(sensor, 0x613E, 0x04);
+        ret |= imx351_write_reg(sensor, 0x613F, 0xD0);
         ret |= imx351_write_reg(sensor, 0x104, 0x00);
     }
     return 0;
@@ -1615,12 +1656,13 @@ static int imx351_enum_mbus_code(struct v4l2_subdev *sd,
     struct i2c_client *client = v4l2_get_subdevdata(sd);
     struct imx351 *sensor = client_to_imx351(client);
 
-    u32 cur_code = MEDIA_BUS_FMT_SBGGR12_1X12;
+    u32 cur_code = MEDIA_BUS_FMT_SGBRG10_1X10 ;
     pr_info("enter %s\n", __func__);
 
     if (code->index > 0)
         return -EINVAL;
     imx351_get_format_code(sensor, &cur_code);
+    pr_info("Current media bus code set: 0x%X\n", cur_code);
     code->code = cur_code;
 
     return 0;
@@ -1636,6 +1678,9 @@ static int imx351_set_fmt(struct v4l2_subdev *sd,
     pr_info("enter %s\n", __func__);
     mutex_lock(&sensor->lock);
 
+    pr_info("%s: Requested format: width=%d, height=%d\n", __func__,
+        fmt->format.width, fmt->format.height);
+
     if ((fmt->format.width != sensor->cur_mode.size.width) ||
         (fmt->format.height != sensor->cur_mode.size.height))
     {
@@ -1644,6 +1689,8 @@ static int imx351_set_fmt(struct v4l2_subdev *sd,
         mutex_unlock(&sensor->lock);
         return -EINVAL;
     }
+   pr_info("%s: Using preg_data at address %p with count %d\n", __func__,
+            sensor->cur_mode.preg_data, sensor->cur_mode.reg_data_count);
 
     ret = imx351_write_reg_arry(sensor,
                                 (struct vvcam_sccb_data_s *)sensor->cur_mode.preg_data,
@@ -1654,7 +1701,7 @@ static int imx351_set_fmt(struct v4l2_subdev *sd,
         mutex_unlock(&sensor->lock);
         return -EINVAL;
     }
-
+   pr_info("%s: Format successfully set. Code: 0x%X\n", __func__, fmt->format.code);
     imx351_get_format_code(sensor, &fmt->format.code);
     fmt->format.field = V4L2_FIELD_NONE;
     sensor->format = fmt->format;
