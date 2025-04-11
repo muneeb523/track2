@@ -773,8 +773,7 @@ static struct vvcam_mode_info_s pimx351_mode_info[] = {
             .min_afps = 5 * 1024,
             .int_update_delay_frm = 1,
             .gain_update_delay_frm = 1,
-        }
-
+        },
         .mipi_info = {
             .mipi_lane = 4, // Keeping it at 4 lane
         },
