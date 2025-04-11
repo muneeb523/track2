@@ -754,26 +754,26 @@ static struct vvcam_mode_info_s pimx351_mode_info[] = {
         },
         .bayer_pattern = BAYER_GBRG,
         .ae_info = {
-            .def_frm_len_lines = 0x466,
-            .curr_frm_len_lines = 0x466,
-            .one_line_exp_time_ns = 29625,
-
-            .max_integration_line = 0x466 - 4,
+            .def_frm_len_lines = 0x8D,          // 141 lines
+            .curr_frm_len_lines = 0x8D,         // 141 lines
+            .one_line_exp_time_ns = 29625,      // unchanged
+        
+            .max_integration_line = 0x8D - 4,   // 137
             .min_integration_line = 1,
-
+        
             .max_again = 8 * 1024,
             .min_again = 2 * 1024,
             .max_dgain = 4 * 1024,
             .min_dgain = 1.5 * 1024,
             .gain_step = 4,
-            .start_exposure = 3 * 400 * 1024,
-            .cur_fps = 30 * 1024,
-            .max_fps = 30 * 1024,
+            .start_exposure = 3 * 141 * 1024,   // optional; can adjust
+            .cur_fps = 240 * 1024,
+            .max_fps = 240 * 1024,
             .min_fps = 5 * 1024,
             .min_afps = 5 * 1024,
             .int_update_delay_frm = 1,
             .gain_update_delay_frm = 1,
-        },
+        }
 
         .mipi_info = {
             .mipi_lane = 4, // Keeping it at 4 lane
@@ -1259,11 +1259,14 @@ static int imx351_set_fps(struct imx351 *sensor, u32 fps)
 
     ret |= imx351_write_reg(sensor, 0x0104, 0x01);
 
-    ret |= imx351_write_reg(sensor, 0x0340, (u8)(vts >> 8));
+    ret |= imx351_write_reg(sensor, 0x0340, 0x04);
 
-    ret |= imx351_write_reg(sensor, 0x0341, (u8)(vts & 0xff));
+    ret |= imx351_write_reg(sensor, 0x0341, 0xB8);
+    ret |= imx351_write_reg(sensor, 0x0342, 0x0B);
+    ret |= imx351_write_reg(sensor, 0x0343, 0x50);
 
     ret |= imx351_write_reg(sensor, 0x0104, 0x00);
+   
 
     sensor->cur_mode.ae_info.cur_fps = fps;
 
